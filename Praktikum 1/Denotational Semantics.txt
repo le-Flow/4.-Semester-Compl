@@ -1,0 +1,28 @@
+Part (a):
+
+    Initial State s0s0​:
+        Define s0(v)=0 for all variables v. This means every variable has an initial value of 0.
+
+    First Assignment x:=1
+        Apply the assignment using C and modify:
+        C[[x:=1]](s0)=modify(s0,x,1)
+        This updates x to 1 in the new state derived from s0 -> s1
+        s1(x)=1 , s1(v)=0 for all v!=x.
+
+    Second Assignment x:=x+1:
+        Evaluate x+1 in s1​:
+        E[[x+1]](s1)=E[[x]](s1)+1=1+1=2
+
+        Apply the assignment:
+        C[[x:=x+1]](s1)=modify(s1,x,2)
+        This updates x to 2 in the new state derived from s1​ -> s2
+        s2(x)=2 , s2(v)=0 for all v!=x
+
+Part (b):
+
+    Equivalence Explanation:
+        The sequence x:=1;x:=x+1 sets x first to 1 and then increments it to 2.
+        The assignment x:=2 directly sets x to 2.
+        In both cases, the final state for x is 2, and all other variables remain unchanged.
+        Therefore, C[[x:=1;x:=x+1;]](s) and C[[x:=2;]](s) are equivalent because both result in the state where x=2 and s(v)=0 for all v!=x,
+        regardless of the initial state s.

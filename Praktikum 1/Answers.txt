@@ -1,0 +1,25 @@
+Question (c): If evaluating g(e1, e2) starts in parallel with the evaluations of e1 and e2, and e1 is zero while e2 errors, then:
+
+    If g doesn’t need e2 to compute with e1 = 0, the error in e2 can be ignored.
+    If g needs both values, the program must handle or propagate the error from e2.
+
+Question (d): Evaluating g(e1, e2) in parallel when e1 is z and e2 changes z can lead to unpredictable results due to a race condition. Thus, parallel evaluation here isn't safe unless additional synchronization mechanisms are used to manage access to z.
+
+Ex. 4_1.2
+Question (a):
+
+    Process 1: Executes alone.
+    Process 2: Wait for Process 1, can run in parallel with Process 3
+    Process 3: Wait for Process 1, can run in parallel with Process 2.
+    Process 4: Waits for Process 2 and Process 3.
+    Process 5: Waits for Process 4.
+    Process 6: Waits for Process 5; can’t start until Process 5 is determined.
+    Process 7: Waits for Process 5; can’t start until Process 5 is determined.
+
+Question (b): Splitting Process 6 and 7 allows g(x) and h(x) to potentially execute in parallel and cache the results in a temporary variable.
+
+Question (c): If the program doesn't adhere to single-assignment rules, parallel execution may yield incorrect results due to potential reassignments causing race conditions or value inconsistencies.
+
+Question (d): Deciding the single-assignment condition in a subset of C is undecidable because it would require solving the halting problem to determine the program’s behavior in all cases. A simpler, decidable condition could involve static code analysis techniques, but would limit the language's expressive power.
+
+Question (e): If the only side effects are assignments, the language meets the declarative language criteria by having predictable outputs for given inputs, which are a hallmark of declarative languages. I.e. no variable gets changed.

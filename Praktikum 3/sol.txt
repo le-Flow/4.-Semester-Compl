@@ -1,0 +1,9 @@
+2: No this will not compile because the compiler doesn't have any clue wether the
+object does implement comparable or not (it is not declared) 
+(operator work on primitive types only)
+
+4: k and v will be replaced by Object
+5: yes, "? extends Number" that only types which derive from Number or its derivates are accepted
+    -> every Item of the List can use methods from Number (toSting() included)
+
+7: No, a static Method cannot operate on a Class with generic attributes 
